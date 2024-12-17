@@ -66,6 +66,12 @@ CREATE TABLE kturV2.Setting (
     setting_name VARCHAR(255)
 );
 
+CREATE TABLE kturV2.Award (
+    id_award SERIAL PRIMARY KEY,
+    award_name VARCHAR(255),
+    award_year INT
+);
+
 CREATE TABLE kturV2.Review (
     id_review SERIAL PRIMARY KEY,
     id_lecteur INT,
@@ -115,6 +121,14 @@ CREATE TABLE kturV2.Book_Setting (
     PRIMARY KEY (id_book, id_setting),
     FOREIGN KEY (id_book) REFERENCES kturV2.Book(id_book),
     FOREIGN KEY (id_setting) REFERENCES kturV2.Setting(id_setting)
+);
+
+CREATE TABLE kturV2.Book_Award (
+    id_book INT,
+    id_award INT,
+    PRIMARY KEY (id_book, id_award),
+    FOREIGN KEY (id_book) REFERENCES kturV2.Book(id_book),
+    FOREIGN KEY (id_award) REFERENCES kturV2.Award(id_award)
 );
 
 -- Table de jointure pour la relation "User - Book" (a lu)
